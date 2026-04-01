@@ -3,21 +3,44 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { X, Droplets } from "lucide-react";
+import { X } from "lucide-react";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { CtaSection } from "@/components/sections/cta-section";
 
-// Placeholder gallery items - will be replaced with real images later
 const galleryItems = [
-  { id: 1, category: "green-recovery", labelEn: "Green Pool — Before Treatment", labelEs: "Piscina Verde — Antes del Tratamiento", image: "/images/pool-green-before.webp" },
-  { id: 2, category: "green-recovery", labelEn: "Crystal Clear — After Recovery", labelEs: "Cristalina — Después de Recuperación", image: "/images/pool-green-after.webp" },
-  { id: 3, category: "resurfacing", labelEn: "Pool Resurfacing — Before & After", labelEs: "Repavimentación — Antes y Después", image: "/images/pool-resurfacing.webp" },
-  { id: 4, category: "resurfacing", labelEn: "Resurfacing in Progress", labelEs: "Repavimentación en Proceso", image: "/images/pool-resurfacing-2.webp" },
-  { id: 5, category: "maintenance", labelEn: "Water Chemistry Testing", labelEs: "Prueba de Química del Agua", image: "/images/pool-service-tech.webp" },
-  { id: 6, category: "cleaning", labelEn: "Our Service Vehicle", labelEs: "Nuestro Vehículo de Servicio", image: "/images/ajimenez-pool-service-vehicle-miami.jpeg" },
-  { id: 7, category: "cleaning", labelEn: "A. Jiménez Pool Service", labelEs: "A. Jiménez Pool Service", image: "/images/ajimenez-pool-service-miami-promo.jpeg" },
-  { id: 8, category: "cleaning", labelEn: "Ready for Service", labelEs: "Listos para el Servicio", image: "/images/extracted/ajimenez-pool-service-truck-front.jpeg" },
+  // Cleaning - Before
+  { id: 1, category: "cleaning", labelEn: "Pool Before Cleaning — Leaves & Debris", labelEs: "Piscina Antes de Limpieza — Hojas y Residuos", image: "/images/pool-before-cleaning-leaves-debris-miami.webp" },
+  { id: 2, category: "cleaning", labelEn: "Dirty Pool — Before Professional Service", labelEs: "Piscina Sucia — Antes del Servicio Profesional", image: "/images/dirty-pool-debris-before-service-miami.webp" },
+  // Cleaning - After
+  { id: 3, category: "cleaning", labelEn: "Crystal Clear Pool — After Cleaning", labelEs: "Piscina Cristalina — Después de Limpieza", image: "/images/crystal-clear-pool-after-cleaning-miami.webp" },
+  { id: 4, category: "cleaning", labelEn: "Pool Vacuum Cleaning in Progress", labelEs: "Limpieza con Aspiradora en Proceso", image: "/images/large-rectangular-pool-vacuum-cleaning-miami.webp" },
+  { id: 5, category: "cleaning", labelEn: "Kidney Pool — Cleaning Service", labelEs: "Piscina Riñón — Servicio de Limpieza", image: "/images/kidney-pool-cleaning-service-miami.webp" },
+  // Green Recovery
+  { id: 6, category: "green-recovery", labelEn: "Green Algae Pool — Before Treatment", labelEs: "Piscina Verde con Algas — Antes del Tratamiento", image: "/images/green-algae-pool-before-treatment-miami.webp" },
+  { id: 7, category: "green-recovery", labelEn: "Green Pool — Before Recovery", labelEs: "Piscina Verde — Antes de Recuperación", image: "/images/pool-green-before.webp" },
+  { id: 8, category: "green-recovery", labelEn: "Crystal Clear — After Recovery", labelEs: "Cristalina — Después de Recuperación", image: "/images/pool-green-after.webp" },
+  // Maintenance
+  { id: 9, category: "maintenance", labelEn: "Water Chemistry pH & Chlorine Testing", labelEs: "Prueba de Química del Agua — pH y Cloro", image: "/images/water-chemistry-testing-ph-chlorine-miami.webp" },
+  { id: 10, category: "maintenance", labelEn: "Above Ground Pool — Chlorine Maintenance", labelEs: "Piscina Sobre Nivel — Mantenimiento de Cloro", image: "/images/above-ground-pool-chlorine-maintenance-miami.webp" },
+  { id: 11, category: "maintenance", labelEn: "Filter & Pump System Running", labelEs: "Sistema de Filtro y Bomba en Funcionamiento", image: "/images/above-ground-pool-filter-pump-miami.webp" },
+  { id: 12, category: "maintenance", labelEn: "Pool with Safety Fence — Well Maintained", labelEs: "Piscina con Cerca de Seguridad — Bien Mantenida", image: "/images/rectangular-pool-safety-fence-maintained-miami.webp" },
+  // Resurfacing
+  { id: 13, category: "resurfacing", labelEn: "Pool Resurfacing — Before & After", labelEs: "Repavimentación — Antes y Después", image: "/images/pool-resurfacing.webp" },
+  { id: 14, category: "resurfacing", labelEn: "Resurfacing in Progress", labelEs: "Repavimentación en Proceso", image: "/images/pool-resurfacing-2.webp" },
+  // Luxury Pools
+  { id: 15, category: "cleaning", labelEn: "Luxury Modern Pool with Spa — Mosaic Tile", labelEs: "Piscina Moderna de Lujo con Spa — Mosaico", image: "/images/luxury-modern-pool-spa-mosaic-tile-miami.webp" },
+  { id: 16, category: "cleaning", labelEn: "Rectangular Pool with Tropical Landscaping", labelEs: "Piscina Rectangular con Paisajismo Tropical", image: "/images/rectangular-pool-spa-tropical-landscaping-miami.webp" },
+  { id: 17, category: "cleaning", labelEn: "Modern Pool with Pergola", labelEs: "Piscina Moderna con Pérgola", image: "/images/modern-rectangular-pool-pergola-miami.webp" },
+  { id: 18, category: "cleaning", labelEn: "Luxury Pool — Travertine & Mediterranean Style", labelEs: "Piscina de Lujo — Estilo Mediterráneo", image: "/images/luxury-pool-travertine-mediterranean-miami.webp" },
+  { id: 19, category: "cleaning", labelEn: "Clean Pool with Travertine Deck", labelEs: "Piscina Limpia con Deck de Travertino", image: "/images/clean-rectangular-pool-travertine-deck-miami.webp" },
+  { id: 20, category: "cleaning", labelEn: "Residential Pool with Spa — Blue Tile", labelEs: "Piscina Residencial con Spa — Azulejo Azul", image: "/images/residential-pool-spa-blue-tile-miami.webp" },
+  { id: 21, category: "cleaning", labelEn: "Freeform Pool — Crystal Clear Water", labelEs: "Piscina de Forma Libre — Agua Cristalina", image: "/images/freeform-backyard-pool-clear-water-miami.webp" },
+  { id: 22, category: "cleaning", labelEn: "Freeform Pool with Safety Fence", labelEs: "Piscina de Forma Libre con Cerca de Seguridad", image: "/images/freeform-pool-safety-fence-clean-water-miami.webp" },
+  { id: 23, category: "cleaning", labelEn: "Screened Pool — Night Blue Lighting", labelEs: "Piscina con Pantalla — Iluminación Nocturna Azul", image: "/images/screened-pool-night-blue-lighting-miami.webp" },
+  // Our Team
+  { id: 24, category: "maintenance", labelEn: "Our Pool Technician at Work", labelEs: "Nuestro Técnico de Piscinas en Acción", image: "/images/pool-technician-clean-residential-pool-miami.webp" },
+  { id: 25, category: "maintenance", labelEn: "A. Jiménez Pool Service Vehicle", labelEs: "Vehículo de A. Jiménez Pool Service", image: "/images/ajimenez-pool-service-vehicle-miami.jpeg" },
 ];
 
 const categories = {
@@ -47,8 +70,8 @@ export default function GalleryClient() {
   const [selectedItem, setSelectedItem] = useState<number | null>(null);
 
   const t = {
-    en: { title: "Our Work", subtitle: "See the results that keep Miami's pools crystal clear", placeholder: "Photos coming soon — generating with AI" },
-    es: { title: "Nuestro Trabajo", subtitle: "Vea los resultados que mantienen las piscinas de Miami cristalinas", placeholder: "Fotos próximamente — generando con IA" },
+    en: { title: "Our Work", subtitle: "Real photos from real Miami pools — see the A. Jiménez difference" },
+    es: { title: "Nuestro Trabajo", subtitle: "Fotos reales de piscinas reales en Miami — vea la diferencia A. Jiménez" },
   };
   const c = t[lang];
   const cats = categories[lang];
@@ -122,7 +145,6 @@ export default function GalleryClient() {
               </AnimatePresence>
             </motion.div>
 
-            <p className="text-center text-white/30 text-sm mt-8">{c.placeholder}</p>
           </div>
         </section>
 

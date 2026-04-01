@@ -15,7 +15,7 @@ export function BeforeAfter({ lang = "en" }: { lang?: "en" | "es" }) {
       after: "After",
       caption: "Green Pool Recovery — Algae treatment and complete restoration",
       resurfTitle: "Pool Resurfacing",
-      resurfCaption: "Complete surface restoration with professional finish",
+      resurfCaption: "Professional pool cleaning — real results from our Miami clients",
     },
     es: {
       title: "Vea la Diferencia",
@@ -24,7 +24,7 @@ export function BeforeAfter({ lang = "en" }: { lang?: "en" | "es" }) {
       after: "Después",
       caption: "Recuperación de Piscina Verde — Tratamiento de algas y restauración completa",
       resurfTitle: "Repavimentación",
-      resurfCaption: "Restauración completa de superficie con acabado profesional",
+      resurfCaption: "Limpieza profesional de piscinas — resultados reales de nuestros clientes en Miami",
     },
   };
   const c = t[lang];
@@ -66,7 +66,7 @@ export function BeforeAfter({ lang = "en" }: { lang?: "en" | "es" }) {
               {/* After (full background) */}
               <Image
                 src="/images/pool-green-after.webp"
-                alt="Pool after professional cleaning"
+                alt="Crystal clear pool after green pool recovery treatment by A. Jiménez Pool Service Miami"
                 fill
                 className="object-cover"
               />
@@ -76,8 +76,8 @@ export function BeforeAfter({ lang = "en" }: { lang?: "en" | "es" }) {
                 style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
               >
                 <Image
-                  src="/images/pool-green-before.webp"
-                  alt="Green pool before treatment"
+                  src="/images/green-algae-pool-before-treatment-miami.webp"
+                  alt="Green algae pool before treatment in Miami"
                   fill
                   className="object-cover"
                 />
@@ -104,26 +104,39 @@ export function BeforeAfter({ lang = "en" }: { lang?: "en" | "es" }) {
             <p className="text-white/40 text-sm mt-3 text-center">{c.caption}</p>
           </motion.div>
 
-          {/* Resurfacing Before/After */}
+          {/* Before/After grid - real photos */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
+            className="space-y-4"
           >
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/[0.08]">
-              <Image
-                src="/images/pool-resurfacing.webp"
-                alt="Pool resurfacing before and after"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4">
-                <h3 className="text-white font-semibold text-lg">{c.resurfTitle}</h3>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/[0.08]">
+                <Image
+                  src="/images/dirty-pool-debris-before-service-miami.webp"
+                  alt="Dirty pool with debris before professional cleaning service in Miami"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-red-500/80 text-white text-xs font-semibold">
+                  {c.before}
+                </div>
+              </div>
+              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/[0.08]">
+                <Image
+                  src="/images/crystal-clear-pool-after-cleaning-miami.webp"
+                  alt="Crystal clear pool after professional cleaning by A. Jiménez in Miami"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-green-500/80 text-white text-xs font-semibold">
+                  {c.after}
+                </div>
               </div>
             </div>
-            <p className="text-white/40 text-sm mt-3 text-center">{c.resurfCaption}</p>
+            <p className="text-white/40 text-sm text-center">{c.resurfCaption}</p>
           </motion.div>
         </div>
       </div>
