@@ -1,8 +1,51 @@
 "use client";
 
 import Link from "next/link";
-import { Droplets, Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
 import { SITE, NAV_LINKS, SERVICES } from "@/lib/constants";
+
+function PoolLogo() {
+  return (
+    <svg viewBox="0 0 44 44" className="h-8 w-8" aria-hidden="true">
+      <defs>
+        <linearGradient id="footerLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#7dd3fc" />
+          <stop offset="50%" stopColor="#36b5e0" />
+          <stop offset="100%" stopColor="#1e56a0" />
+        </linearGradient>
+        <linearGradient id="footerWaveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="rgba(255,255,255,0.9)" />
+          <stop offset="100%" stopColor="rgba(255,255,255,0.5)" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M22 4 C22 4, 8 20, 8 28 C8 36, 14.3 42, 22 42 C29.7 42, 36 36, 36 28 C36 20, 22 4, 22 4Z"
+        fill="url(#footerLogoGrad)"
+      />
+      <path
+        d="M22 8 C22 8, 12 21, 12 28 C12 33.5, 16.5 38, 22 38 C27.5 38, 32 33.5, 32 28 C32 21, 22 8, 22 8Z"
+        fill="none"
+        stroke="rgba(255,255,255,0.15)"
+        strokeWidth="0.8"
+      />
+      <path
+        d="M14 28 Q18 25, 22 28 Q26 31, 30 28"
+        fill="none"
+        stroke="url(#footerWaveGrad)"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <path
+        d="M15 32 Q19 29, 22 32 Q25 35, 29 32"
+        fill="none"
+        stroke="rgba(255,255,255,0.5)"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
+      <ellipse cx="17" cy="18" rx="3" ry="5" fill="rgba(255,255,255,0.25)" transform="rotate(-20 17 18)" />
+    </svg>
+  );
+}
 
 export function Footer({ lang = "en" }: { lang?: "en" | "es" }) {
   const t = {
@@ -35,7 +78,7 @@ export function Footer({ lang = "en" }: { lang?: "en" | "es" }) {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4 cursor-pointer">
-              <Droplets className="h-7 w-7 text-cyan-400" />
+              <PoolLogo />
               <div>
                 <span className="text-white font-bold text-lg">A. Jiménez</span>
                 <span className="text-cyan-400 text-xs font-medium tracking-widest uppercase block">
